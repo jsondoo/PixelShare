@@ -18,7 +18,7 @@ function new_connection(socket) {
         x = pixel.x;
         y = pixel.y;
         if (x < 0 || y < 0 || x >= DIM || y >= DIM) return;
-        var socket_id = socket.id;
+        var socket_id = socket.request.connection.remoteAddress;
         var time = Date.now();
         if (access_times[socket_id] != undefined && (time - access_times[socket_id] < 1000*5)) return;//4.95*MIN_TO_MILLISEC)) return;
         io.emit('fill_pixel', pixel);

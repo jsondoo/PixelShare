@@ -2,6 +2,8 @@ var pixels = [];
 var canvas;
 var scl;
 
+var last_access_time;
+
 var socket;
 
 function setup() {
@@ -63,13 +65,14 @@ function mouseClicked() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  for (var i = 0; i < pixels.length; i++) {
+    console.log('WINDOW RESIZED');
+    resizeCanvas(windowWidth, windowHeight);
+    for (var i = 0; i < pixels.length; i++) {
       var row = pixels[i];
       for (var j = 0; j < row.length; j++) {
           var pixel = row[j];
           fill(pixel['r'],pixel['g'],pixel['b']);
           rect(j*scl, i*scl, scl, scl);
       }
-  }
+    }
 }
