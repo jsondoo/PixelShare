@@ -1,5 +1,6 @@
 <html background='rgb(0,0,0)'>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="./p5.min.js"></script>
     <script src="./p5.dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
@@ -7,10 +8,18 @@
   </head>
   <body>
     <div id="canvas-holder">
+        <div id="color-picker">
+          <span>Color Picker</span>
+          <button id="red" value="#FF0000" onclick="changeColour(this.value)"></button>
+          <button id="orange" value="#FF7F00" onclick="changeColour(this.value)"></button>
+          <button id="yellow" value="#FFFF00" onclick="changeColour(this.value)"></button>
+          <button id="green" value="#00FF00" onclick="changeColour(this.value)"></button>
+          <button id="blue" value="#0000FF" onclick="changeColour(this.value)"></button>
+          <button id="purple" value="#9400D3" onclick="changeColour(this.value)"></button>
+          <button id="black" value="#000000" onclick="changeColour(this.value)"></button>
+          <button id="white" value="#FFFFFF" onclick="changeColour(this.value)"></button>
+        </div>
       <!-- canvas goes here -->
-    </div>
-    <div id="color-picker">
-      <p>jaewklfjawklfjlkwaeflk</p>
     </div>
   </body>
 </html>

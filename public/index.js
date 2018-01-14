@@ -8,7 +8,7 @@ function setup() {
     scl = Math.floor(windowWidth/300);
     canvas = createCanvas(windowWidth,windowHeight);
     canvas.parent("canvas-holder")
-    canvas.position(0,0);
+    // canvas.position(0,0);
     canvas.style('z-index', '-1');
     background(125);
 
