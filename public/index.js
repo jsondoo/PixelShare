@@ -4,6 +4,8 @@ var scl;
 var r;
 var g;
 var b;
+var width;
+var height;
 
 var last_access_time;
 
@@ -12,7 +14,8 @@ var socket;
 function setup() {
     scl = Math.floor(displayWidth/300);
     r = g = b = 0;
-    canvas = createCanvas(displayWidth,displayHeight);
+    width = scl*300;
+    canvas = createCanvas(width, width);
     canvas.parent("canvas-holder")
     // canvas.position(0,0);
     canvas.style('z-index', '-1');
@@ -95,7 +98,7 @@ function mouseClicked() {
 
 function windowResized() {
     console.log('WINDOW RESIZED');
-    resizeCanvas(displayWidth, displayHeight);
+    resizeCanvas(width, height);
     for (var i = 0; i < pixels.length; i++) {
       var row = pixels[i];
       for (var j = 0; j < row.length; j++) {
