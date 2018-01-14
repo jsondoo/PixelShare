@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="controls">
-      <div id="color-picker">
+      <div style="float: left; width: 150px;" id="color-picker">
         <button id="red" value="#FF0000" onclick="changeColour(this.value)"></button>
         <button id="orange" value="#FF7F00" onclick="changeColour(this.value)"></button>
         <button id="yellow" value="#FFFF00" onclick="changeColour(this.value)"></button>
@@ -18,9 +18,12 @@
         <button id="black" value="#000000" onclick="changeColour(this.value)"></button>
         <button id="white" value="#FFFFFF" onclick="changeColour(this.value)"></button>
       </div>
-      <div id="timer">
+      <div style="float: left;">
+        <p>Time-out Period:</p>
+      </div>
+      <div style="float: left; width: 200px;" id="timer">
         <!-- Display the countdown -->
-        <p id="time"></p>
+        <p id="time"> </p>
       </div>
     </div>
     <div id="canvas-holder">
