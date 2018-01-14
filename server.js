@@ -21,13 +21,13 @@ function new_connection(socket) {
         var socket_id = socket.id;
         var time = Date.now();
         if (access_times[socket_id] != undefined && (time - access_times[socket_id] < 1000*5)) return;//4.95*MIN_TO_MILLISEC)) return;
-        grid[x][y] = {
+        io.emit('fill_pixel', pixel);
+        grid[y][x] = {
             'r': pixel.r,
             'g': pixel.g,
             'b': pixel.b
         };
         access_times[socket_id] = time
-        io.emit('fill_pixel', pixel);
     });
 }
 

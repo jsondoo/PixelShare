@@ -53,7 +53,7 @@ function mouseClicked() {
     r = g = b = 0;
     col = Math.floor(mouseX/scl);
     row = Math.floor(mouseY/scl);
-    pixels[row][col] = {'r':r,'g':g,'b':b};
+    // pixels[row][col] = {'r':r,'g':g,'b':b};
     socket.emit('send_pixel_update',
         {
             'x' : col, 'y' : row,
