@@ -42,13 +42,6 @@ function update_timer(wait_time) {
         // decrement by a second
         distance -= 1000;
 
-        var minutes = Math.floor(distance / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
-        console.log('called')
-        distance -= 1000;
-
-        // If the count down is finished, write some text
         if (distance <= 0) {
             clearInterval(x);
             document.getElementById("time").innerHTML = "Ready to click";
