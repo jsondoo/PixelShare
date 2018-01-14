@@ -14,7 +14,7 @@ var socket;
 function setup() {
     scl = Math.floor(displayWidth/100);
     r = g = b = 0;
-    width = scl*300;
+    width = scl*200;
     canvas = createCanvas(width, width);
     canvas.parent("canvas-holder")
     // canvas.position(0,0);

@@ -2,7 +2,7 @@ var express = require('express')
 var app = express();
 var server = app.listen(8000);
 
-var DIM = 300; // size of canvas
+var DIM = 200; // size of canvas
 var WAIT_TIME = 5000 // time out period in milliseconds
 
 app.use(express.static('public'));
