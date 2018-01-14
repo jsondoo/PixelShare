@@ -1,6 +1,9 @@
 var pixels = [];
 var canvas;
 var scl;
+var r;
+var g;
+var b;
 
 var last_access_time;
 
@@ -52,10 +55,9 @@ function get_state(data) {
 
 function mouseClicked() {
     console.log('MOUSE PRESSED', mouseX, mouseY);
-    r = g = b = 0;
+    console.log('Color', r, g, b);
     col = Math.floor(mouseX/scl);
     row = Math.floor(mouseY/scl);
-    // pixels[row][col] = {'r':r,'g':g,'b':b};
     socket.emit('send_pixel_update',
         {
             'x' : col, 'y' : row,
@@ -76,3 +78,11 @@ function windowResized() {
       }
     }
 }
+
+// called when a button is clicked in color picker
+function changeColour(hex){
+    hex = hex.replace('#','');
+    r = parseInt(hex.substring(0, hex.length/3), 16);
+    g = parseInt(hex.substring(hex.length/3, 2*hex.length/3), 16);
+    b = parseInt(hex.substring(2*hex.length/3, 3*hex.length/3), 16);
+  }
