@@ -68,7 +68,6 @@ function update_pixel(update) {
 }
 
 function get_state(data) {
-    console.log('GET STATE', data);
     pixels = data;
 
     for (var i = 0; i < pixels.length; i++) {
