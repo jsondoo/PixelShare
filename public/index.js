@@ -21,8 +21,14 @@ function setup() {
     socket = io.connect('http://localhost:3000');
     socket.on('state', get_state);
     socket.on('fill_pixel', update_pixel);
+    socket.on('timer', update_timer);
+
     stroke(255,255,255);
     noStroke();
+}
+
+function update_timer(wait_time) {
+    
 }
 
 function update_pixel(update) {
