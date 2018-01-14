@@ -3,12 +3,13 @@ var app = express();
 var server = app.listen(process.env.PORT || 3000);
 
 var DIM = 300;
+var MIN_TO_MILLISEC = 60000
 
 app.use(express.static('public'));
 var io = require('socket.io')(server);
 
 var grid = create_grid();
-var ips = {};
+var access_times = {};
 io.sockets.on('connection', new_connection);
 
 function new_connection(socket) {
@@ -17,12 +18,15 @@ function new_connection(socket) {
         x = pixel.x;
         y = pixel.y;
         if (x < 0 || y < 0 || x >= DIM || y >= DIM) return;
+        var socket_id = socket.id;
+        var time = Date.now();
+        if (access_times[socket_id] != undefined || (time - access_times[socket_id] < 4.95*MIN_TO_MILLISEC)) return;
         grid[x][y] = {
             'r': pixel.r,
             'g': pixel.g,
             'b': pixel.b
         };
-        ips[socket.id] = Date.now();
+        access_times[socket_id] = time
         io.emit('fill_pixel', pixel);
     });
 }
