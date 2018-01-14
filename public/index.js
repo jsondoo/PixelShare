@@ -21,7 +21,7 @@ function setup() {
     canvas.style('z-index', '-1');
     background(125);
 
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('http://104.197.33.114:8000');
     socket.on('state', get_state);
     socket.on('fill_pixel', update_pixel);
     socket.on('timer', update_timer);
