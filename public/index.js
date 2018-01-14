@@ -56,7 +56,6 @@ function update_timer(wait_time) {
 }
 
 function update_pixel(update) {
-    console.log('UPDATE PIXEL');
     var row = update['y'];
     var col = update['x'];
 
@@ -84,8 +83,6 @@ function get_state(data) {
 }
 
 function mouseClicked() {
-    console.log('MOUSE PRESSED', mouseX, mouseY);
-    console.log('Color', r, g, b);
     col = Math.floor(mouseX/scl);
     row = Math.floor(mouseY/scl);
     socket.emit('send_pixel_update',
@@ -97,7 +94,6 @@ function mouseClicked() {
 }
 
 function windowResized() {
-    console.log('WINDOW RESIZED');
     resizeCanvas(width, height);
     for (var i = 0; i < pixels.length; i++) {
       var row = pixels[i];
