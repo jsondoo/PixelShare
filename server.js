@@ -8,12 +8,22 @@ var WAIT_TIME = 5000 // time out period in milliseconds
 app.use(express.static('public'));
 var io = require('socket.io')(server);
 
+// server-side variables
 var grid = create_grid();
 var access_times = {};
+var users_online = 0;
+
 io.sockets.on('connection', new_connection);
 
 function new_connection(socket) {
+    users_online++;
+    io.emit('update_users_online', users_online);
+
     socket.emit('state', grid);
+    socket.on('disconnect', function() { 
+        users_online--;
+        io.emit('update_users_online', users_online);
+    }) 
     socket.on('send_pixel_update', function update_pixel(pixel) {
         x = pixel.x;
         y = pixel.y;

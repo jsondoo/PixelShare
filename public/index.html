@@ -18,13 +18,10 @@
         <button id="black" value="#000000" onclick="changeColour(this.value)"></button>
         <button id="white" value="#FFFFFF" onclick="changeColour(this.value)"></button>
       </div>
-      <div style="float: left;">
-        <p>Time-out Period:</p>
+      <div style="float: left; width: 180px">
+        <span>Time-out Period:</span><span id="time"></span>
       </div>
-      <div style="float: left; width: 200px;" id="timer">
-        <!-- Display the countdown -->
-        <p id="time"> </p>
-      </div>
+      <span>Users Online: </span><span id="num_users">0</span>
     </div>
     <div id="canvas-holder">
       <!-- canvas goes here -->

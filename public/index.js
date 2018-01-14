@@ -25,9 +25,14 @@ function setup() {
     socket.on('state', get_state);
     socket.on('fill_pixel', update_pixel);
     socket.on('timer', update_timer);
+    socket.on('update_users_online', update_users_online);
 
     stroke(255,255,255);
     noStroke();
+}
+
+function update_users_online(num) {
+    document.getElementById("num_users").innerHTML = num
 }
 
 function update_timer(wait_time) {
@@ -44,7 +49,7 @@ function update_timer(wait_time) {
 
         if (distance <= 0) {
             clearInterval(x);
-            document.getElementById("time").innerHTML = "Ready to click";
+            document.getElementById("time").innerHTML = " Ready";
         } else {
         // update timer
             var minutes = Math.floor(distance / (1000 * 60));
