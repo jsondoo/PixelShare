@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 node_modules/*
 public/p5.min.js
 public/p5.dom.js
-=======
-node_modules/
->>>>>>> 15e2b6b3b63d5c0f14214ff4206505e073c10ed9
+.DS_Store

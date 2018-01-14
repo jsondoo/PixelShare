@@ -6,32 +6,16 @@ var socket;
 
 function setup() {
     scl = Math.floor(windowWidth/300);
-    left_over = windowWidth - 300*scl;
     canvas = createCanvas(windowWidth,windowHeight);
-    canvas.position(left_over/2,0);
+    canvas.position(0,0);
     canvas.style('z-index', '-1');
-    background(0);
+    background(125);
 
     socket = io.connect('http://localhost:3000');
     socket.on('state', get_state);
     socket.on('fill_pixel', update_pixel);
     stroke(255,255,255);
     noStroke();
-    noFill();
-
-    frameRate(100);
-}
-
-function draw() {
-
-    for (var i = 0; i < pixels.length; i++) {
-        var row = pixels[i];
-        for (var j = 0; j < row.length; j++) {
-            var pixel = row[j];
-            fill(pixel['r'],pixel['g'],pixel['b']);
-            rect(j*scl, i*scl, scl, scl);
-        }
-  }
 }
 
 function update_pixel(update) {
@@ -44,11 +28,23 @@ function update_pixel(update) {
     var b = update['b'];
 
     pixels[row][col] = {'r':r,'g':g,'b':b};
+
+    fill(r,g,b);
+    rect(col*scl, row*scl, scl, scl);
 }
 
 function get_state(data) {
     console.log('GET STATE', data);
     pixels = data;
+
+    for (var i = 0; i < pixels.length; i++) {
+        var row = pixels[i];
+        for (var j = 0; j < row.length; j++) {
+            var pixel = row[j];
+            fill(pixel['r'],pixel['g'],pixel['b']);
+            rect(j*scl, i*scl, scl, scl);
+        }
+    }
 }
 
 function mouseClicked() {
@@ -63,4 +59,8 @@ function mouseClicked() {
             'r' : r, 'g' : g, 'b' : b
         }
     );
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
