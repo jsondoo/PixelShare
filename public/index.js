@@ -36,21 +36,19 @@ function update_timer(wait_time) {
     
     // update timer every second
     var x = setInterval(function() {
-        // grab current time remaining
-        var distance = wait_time
+        // decrement by a second
+        distance -= 1000;
 
-
-        var minutes = Math.floor(distance / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
-        console.log('called')
-        distance -= 1;
-        
-        // If the count down is finished, write some text
-        if (distance < 0) {
+        // countdown finished
+        if (distance <= 0) {
             clearInterval(x);
             document.getElementById("time").innerHTML = "Ready to click";
-        }
+        } else {
+        // update timer
+            var minutes = Math.floor(distance / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("time").innerHTML = minutes + "m " + seconds + "s "; 
+        }   
     }, 1000);
 }
 
