@@ -12,7 +12,7 @@ var last_access_time;
 var socket;
 
 function setup() {
-    scl = Math.floor(displayWidth/300);
+    scl = Math.floor(displayWidth/100);
     r = g = b = 0;
     width = scl*300;
     canvas = createCanvas(width, width);
