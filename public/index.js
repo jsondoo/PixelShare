@@ -19,17 +19,10 @@ function setup() {
     noStroke();
     noFill();
 
-
-
-
-    frameRate(10);
-
+    frameRate(100);
 }
 
 function draw() {
-
-    fill(255,0,0);
-    rect(100, 100, 100, 100);
 
     for (var i = 0; i < pixels.length; i++) {
         var row = pixels[i];
@@ -50,19 +43,20 @@ function update_pixel(update) {
     var g = update['g'];
     var b = update['b'];
 
-    pixels[row][col] = [r,g,b];
+    pixels[row][col] = {'r':r,'g':g,'b':b};
 }
 
 function get_state(data) {
-    console.log('GET STATE');
+    console.log('GET STATE', data);
     pixels = data;
 }
 
 function mouseClicked() {
-    console.log('MOUSE PRESSED');
+    console.log('MOUSE PRESSED', mouseX, mouseY);
     r = g = b = 0;
     col = Math.floor(mouseX/scl);
     row = Math.floor(mouseY/scl);
+    pixels[row][col] = {'r':r,'g':g,'b':b};
     socket.emit('send_pixel_update',
         {
             'x' : col, 'y' : row,

@@ -6,11 +6,12 @@ app.use(express.static('public'));
 var io = require('socket.io')(server);
 
 var grid = create_grid();
-var ips = [];
+var ips = {};
 io.sockets.on('connection', new_connection);
 
 function new_connection(socket) {
-    ips.push(socket.request.connection.remoteAddress);
+    ips[socket.id] = Date.now();
+    console.log(ips);
     socket.emit('state', grid);
     socket.on('send_pixel_update', update_pixel);
 }
@@ -30,9 +31,9 @@ function create_grid() {
     var grid = [];
     for(i = 0; i < 300; i++) {
         grid[i] = new Array(300).fill({
-            'r': 247,
-            'g': 33,
-            'b': 9
+            'r': 255,
+            'g': 255,
+            'b': 255
         });
     }
     return grid;
