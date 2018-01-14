@@ -1,6 +1,6 @@
 var express = require('express')
 var app = express();
-var server = app.listen(process.env.PORT || 3000);
+var server = app.listen(8000);
 
 var DIM = 300;
 var MIN_TO_MILLISEC = 60000
