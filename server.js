@@ -28,9 +28,9 @@ function create_grid() {
     var grid = []
     for(i = 0; i < 300; i++){
         grid[i] = new Array(300).fill({
-            'r': 255,
-            'g': 255,
-            'b': 255
+            'r': 247,
+            'g': 33,
+            'b': 9
         })
     }
 }
