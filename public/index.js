@@ -21,7 +21,7 @@ function setup() {
     canvas.style('z-index', '-1');
     background(125);
 
-    socket = io.connect('http://localhost:8000');
+    socket = io.connect('http://localhost:3000');
     socket.on('state', get_state);
     socket.on('fill_pixel', update_pixel);
     socket.on('timer', update_timer);
@@ -36,12 +36,11 @@ function update_timer(wait_time) {
     var minutes = Math.floor(distance / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
-
+    
     // update timer every second
     var x = setInterval(function() {
-        // grab current time remaining
-        var distance = wait_time
-
+        // decrement by a second
+        distance -= 1000;
 
         var minutes = Math.floor(distance / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
