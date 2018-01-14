@@ -3,7 +3,7 @@ var app = express();
 var server = app.listen(8000);
 
 var DIM = 300;
-var MIN_TO_MILLISEC = 60000
+var WAIT_TIME = 5000
 
 app.use(express.static('public'));
 var io = require('socket.io')(server);
@@ -20,13 +20,14 @@ function new_connection(socket) {
         if (x < 0 || y < 0 || x >= DIM || y >= DIM) return;
         var socket_id = socket.request.connection.remoteAddress;
         var time = Date.now();
-        if (access_times[socket_id] != undefined && (time - access_times[socket_id] < 1000*5)) return;//4.95*MIN_TO_MILLISEC)) return;
+        if (access_times[socket_id] != undefined && (time - access_times[socket_id] < WAIT_TIME)) return;//4.95*MIN_TO_MILLISEC)) return;
         io.emit('fill_pixel', pixel);
         grid[y][x] = {
             'r': pixel.r,
             'g': pixel.g,
             'b': pixel.b
         };
+        socket.emit('timer', WAIT_TIME);
         access_times[socket_id] = time
     });
 }

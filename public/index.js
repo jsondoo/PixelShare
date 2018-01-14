@@ -24,8 +24,37 @@ function setup() {
     socket = io.connect('http://localhost:3000');
     socket.on('state', get_state);
     socket.on('fill_pixel', update_pixel);
+    socket.on('timer', update_timer);
+
     stroke(255,255,255);
     noStroke();
+}
+
+function update_timer(wait_time) {
+    // set initial time
+    var distance = wait_time
+    var minutes = Math.floor(distance / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
+    
+    // update timer every second
+    var x = setInterval(function() {
+        // grab current time remaining
+        var distance = wait_time
+
+
+        var minutes = Math.floor(distance / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
+        console.log('called')
+        distance -= 1;
+        
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("time").innerHTML = "Ready to click";
+        }
+    }, 1000);
 }
 
 function update_pixel(update) {
