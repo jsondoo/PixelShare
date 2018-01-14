@@ -47,18 +47,22 @@ function update_timer(wait_time) {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
         console.log('called')
-        distance -= 1;
+        distance -= 1000;
 
         // If the count down is finished, write some text
-        if (distance < 0) {
+        if (distance <= 0) {
             clearInterval(x);
             document.getElementById("time").innerHTML = "Ready to click";
+        } else {
+        // update timer
+            var minutes = Math.floor(distance / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
         }
     }, 1000);
 }
 
 function update_pixel(update) {
-    console.log('UPDATE PIXEL');
     var row = update['y'];
     var col = update['x'];
 
@@ -73,7 +77,6 @@ function update_pixel(update) {
 }
 
 function get_state(data) {
-    console.log('GET STATE', data);
     pixels = data;
 
     for (var i = 0; i < pixels.length; i++) {
@@ -87,8 +90,6 @@ function get_state(data) {
 }
 
 function mouseClicked() {
-    console.log('MOUSE PRESSED', mouseX, mouseY);
-    console.log('Color', r, g, b);
     col = Math.floor(mouseX/scl);
     row = Math.floor(mouseY/scl);
     socket.emit('send_pixel_update',
@@ -100,7 +101,6 @@ function mouseClicked() {
 }
 
 function windowResized() {
-    console.log('WINDOW RESIZED');
     resizeCanvas(width, height);
     for (var i = 0; i < pixels.length; i++) {
       var row = pixels[i];

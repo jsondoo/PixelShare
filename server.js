@@ -2,8 +2,8 @@ var express = require('express')
 var app = express();
 var server = app.listen(8000);
 
-var DIM = 300;
-var WAIT_TIME = 5000
+var DIM = 300; // size of canvas
+var WAIT_TIME = 5000 // time out period in milliseconds
 
 app.use(express.static('public'));
 var io = require('socket.io')(server);
@@ -35,6 +35,7 @@ function new_connection(socket) {
 function create_grid() {
     var grid = [];
     for(i = 0; i < DIM; i++) {
+        // initially start with all white pixels
         grid[i] = new Array(DIM).fill({
             'r': 255,
             'g': 255,
